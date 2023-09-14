@@ -45,7 +45,7 @@ jobs:
           shell: /bin/sh
           install: |
             apt-get update -y
-            apt-get install -y autoconf
+            apt-get install -y autoconf libtool
           run: |
             ./autogen.sh
             ./configure
