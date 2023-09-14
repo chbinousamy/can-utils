@@ -43,9 +43,10 @@ jobs:
             CC: ${{ matrix.compiler.cc }}
             CXX: ${{ matrix.compiler.cxx }}
           shell: /bin/sh
+          install: |
+            apt-get update -y
+            apt-get install -y autoconf
           run: |
-            sudo apt-get update -y
-            sudo apt-get install -y autoconf
             ./autogen.sh
             ./configure
             make
