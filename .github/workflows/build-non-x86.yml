@@ -1,4 +1,4 @@
-name: Build C in non-x86 archs
+name: Build in non-x86 archs
 
 on: [push, pull_request, workflow_dispatch]
 
@@ -14,16 +14,16 @@ jobs:
         include:
           - arch: aarch64
             distro: ubuntu22.04
-            compiler: { name: g++-12, cc: gcc-12, cxx: g++-12 }
+            #compiler: { name: g++-12, cc: gcc-12, cxx: g++-12 }
           - arch: aarch64
             distro: ubuntu22.04
-            compiler: { name: clang-14, cc: clang-14, cxx: clang++-14 }
+            #compiler: { name: clang-14, cc: clang-14, cxx: clang++-14 }
           - arch: armv7
             distro: ubuntu22.04
-            compiler: { name: g++-12, cc: gcc-12, cxx: g++-12 }
+            #compiler: { name: g++-12, cc: gcc-12, cxx: g++-12 }
           - arch: riscv64
             distro: ubuntu22.04
-            compiler: { name: g++-12, cc: gcc-12, cxx: g++-12 }
+            #compiler: { name: g++-12, cc: gcc-12, cxx: g++-12 }
 
     steps:
       - uses: actions/checkout@v3.1.0
@@ -39,9 +39,9 @@ jobs:
             mkdir -p "${PWD}/testing"
           dockerRunArgs: |
             --volume "${PWD}:/gnss-sdr"
-          env: |
-            CC: ${{ matrix.compiler.cc }}
-            CXX: ${{ matrix.compiler.cxx }}
+          #env: |
+          #  CC: ${{ matrix.compiler.cc }}
+          #  CXX: ${{ matrix.compiler.cxx }}
           shell: /bin/sh
           install: |
             apt-get update -y
