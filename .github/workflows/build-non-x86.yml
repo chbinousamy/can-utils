@@ -12,8 +12,8 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - arch: aarch64
-            distro: ubuntu22.04
+          #- arch: aarch64
+          #  distro: ubuntu22.04
             #compiler: { name: g++-12, cc: gcc-12, cxx: g++-12 }
           - arch: aarch64
             distro: ubuntu22.04
