@@ -1,0 +1,40 @@
+name: Build in aarch64
+
+on: [push, pull_request, workflow_dispatch]
+
+jobs:
+  build-aarch64:
+    runs-on: ubuntu-latest
+    name: ${{ matrix.distro }} ${{ matrix.arch }}
+    
+    # Run steps on a matrix of archs.
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - arch: aarch64
+            distro: ubuntu22.04
+
+    steps:
+      - uses: actions/checkout@v3.1.0
+      - uses: uraimo/run-on-arch-action@v2.5.0
+        name: Test in non-x86 container
+        continue-on-error: ${{ contains(fromJson('["ppc64le", "s390x"]'), matrix.arch) }}
+        id: test
+        with:
+          arch: ${{ matrix.arch }}
+          distro: ${{ matrix.distro }}
+          githubToken: ${{ github.token }} # Not required, but speeds up builds
+          setup: |
+            mkdir -p "${PWD}/testing"
+          dockerRunArgs: |
+            --volume "${PWD}:/gnss-sdr"
+          shell: /bin/sh
+          install: |
+            apt-get update -y
+            apt-get install -y autoconf libtool build-essential gcc
+          run: |
+            ./autogen.sh
+            ./configure
+            make
+            make distcheck
