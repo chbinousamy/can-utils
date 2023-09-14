@@ -1,0 +1,38 @@
+name: Build C in non-x86 archs
+
+on: [push, pull_request, workflow_dispatch]
+
+jobs:
+  build-in-non-x86:
+    runs-on: ubuntu-latest
+    name: ${{ matrix.distro }} ${{ matrix.arch }} ${{ matrix.compiler.name }}
+    
+    # Run steps on a matrix of archs.
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - arch: aarch64
+            distro: ubuntu22.04
+            compiler: { name: g++-12, cc: gcc-12, cxx: g++-12 }
+          - arch: aarch64
+            distro: ubuntu22.04
+            compiler: { name: clang-14, cc: clang-14, cxx: clang++-14 }
+          - arch: armv7
+            distro: ubuntu22.04
+            compiler: { name: g++-12, cc: gcc-12, cxx: g++-12 }
+          - arch: riscv64
+            distro: ubuntu22.04
+            compiler: { name: g++-12, cc: gcc-12, cxx: g++-12 }
+
+    steps:
+      - uses: actions/checkout@v3.1.0
+      - uses: uraimo/run-on-arch-action@v2.5.0
+      - name: autogen
+        run: ./autogen.sh
+      - name: configure
+        run: ./configure
+      - name: make
+        run: make
+      - name: make distcheck
+        run: make distcheck
