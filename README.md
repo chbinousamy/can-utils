@@ -1,7 +1,5 @@
 [![SocketCAN CodeQL Analysis](https://github.com/chbinousamy/can-utils/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/chbinousamy/can-utils/actions/workflows/codeql-analysis.yml)
-
 [![SocketCAN Build x86 arch](https://github.com/chbinousamy/can-utils/actions/workflows/build-x86.yml/badge.svg)](https://github.com/chbinousamy/can-utils/actions/workflows/build-x86.yml)
-
 [![SocketCAN Build non-x86 archs](https://github.com/chbinousamy/can-utils/actions/workflows/build-non-x86.yml/badge.svg)](https://github.com/chbinousamy/can-utils/actions/workflows/build-non-x86.yml)
 
 
