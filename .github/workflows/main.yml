@@ -28,11 +28,23 @@ jobs:
     steps:
       - uses: actions/checkout@v3.1.0
       - uses: uraimo/run-on-arch-action@v2.5.0
-      - name: autogen
-        run: ./autogen.sh
-      - name: configure
-        run: ./configure
-      - name: make
-        run: make
-      - name: make distcheck
-        run: make distcheck
+        name: Test in non-x86 container
+        continue-on-error: ${{ contains(fromJson('["ppc64le", "s390x"]'), matrix.arch) }}
+        id: test
+        with:
+          arch: ${{ matrix.arch }}
+          distro: ${{ matrix.distro }}
+          githubToken: ${{ github.token }} # Not required, but speeds up builds
+          setup: |
+            mkdir -p "${PWD}/testing"
+          dockerRunArgs: |
+            --volume "${PWD}:/gnss-sdr"
+          env: |
+            CC: ${{ matrix.compiler.cc }}
+            CXX: ${{ matrix.compiler.cxx }}
+          shell: /bin/sh
+          run: |
+            ./autogen.sh
+            ./configure
+            make
+            make distcheck
