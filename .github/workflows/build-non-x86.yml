@@ -45,7 +45,7 @@ jobs:
           shell: /bin/sh
           install: |
             apt-get update -y
-            apt-get install -y autoconf libtool
+            apt-get install -y autoconf libtool build-essential gcc
           run: |
             ./autogen.sh
             ./configure
