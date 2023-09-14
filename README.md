@@ -1,4 +1,9 @@
-[![SocketCAN Build](https://github.com/chbinousamy/can-utils/actions/workflows/autotools.yml/badge.svg)](https://github.com/chbinousamy/can-utils/actions/workflows/autotools.yml)
+[![SocketCAN CodeQL Analysis](https://github.com/chbinousamy/can-utils/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/chbinousamy/can-utils/actions/workflows/codeql-analysis.yml)
+
+[![SocketCAN Build x86 arch](https://github.com/chbinousamy/can-utils/actions/workflows/build-x86.yml/badge.svg)](https://github.com/chbinousamy/can-utils/actions/workflows/build-x86.yml)
+
+[![SocketCAN Build non-x86 archs](https://github.com/chbinousamy/can-utils/actions/workflows/build-non-x86.yml/badge.svg)](https://github.com/chbinousamy/can-utils/actions/workflows/build-non-x86.yml)
+
 
 <p align="center">
 <img src="https://github.com/linux-can/can-logos/raw/master/png/SocketCAN-logo-60dpi.png" alt="SocketCAN logo"/>
