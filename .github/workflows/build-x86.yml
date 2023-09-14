@@ -1,4 +1,4 @@
-name: Build C with autotools
+name: Build in x86
 
 on: [push, pull_request, workflow_dispatch]
 
