@@ -1,10 +1,10 @@
+[![SocketCAN Build](https://github.com/chbinousamy/can-utils/actions/workflows/autotools.yml/badge.svg)](https://github.com/chbinousamy/can-utils/actions/workflows/autotools.yml)
+
 <p align="center">
 <img src="https://github.com/linux-can/can-logos/raw/master/png/SocketCAN-logo-60dpi.png" alt="SocketCAN logo"/>
 </p>
 
 ### SocketCAN userspace utilities and tools
-
-[![SocketCAN Build](https://github.com/chbinousamy/can-utils/actions/workflows/autotools.yml/badge.svg)](https://github.com/chbinousamy/can-utils/actions/workflows/autotools.yml)
 
 This repository contains some userspace utilities for Linux CAN
 subsystem (aka SocketCAN):
