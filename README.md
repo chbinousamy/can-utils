@@ -4,6 +4,8 @@
 
 ### SocketCAN userspace utilities and tools
 
+[![SocketCAN Build](https://github.com/chbinousamy/can-utils/actions/workflows/autotools.yml/badge.svg)](https://github.com/chbinousamy/can-utils/actions/workflows/autotools.yml)
+
 This repository contains some userspace utilities for Linux CAN
 subsystem (aka SocketCAN):
 
