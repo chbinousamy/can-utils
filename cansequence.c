@@ -67,8 +67,7 @@ static void print_usage(char *prg)
 		" -q, --quit <num>	quit if <num> wrong sequences are encountered\n"
 		" -r, --receive		work as receiver\n"
 		" -v, --verbose		be verbose (twice to be even more verbose\n"
-		" -h, --help		this help\n"
-		"     --version		print version information and exit\n",
+		" -h, --help		this help\n",
 		prg, CAN_ID_DEFAULT);
 }
 
@@ -126,7 +125,7 @@ static void do_receive()
 
 		nbytes = recvmsg(s, &msg, 0);
 		if (nbytes < 0) {
-			perror("read()");
+			perror("recvmsg()");
 			exit(EXIT_FAILURE);
 		}
 
@@ -348,7 +347,7 @@ int main(int argc, char **argv)
 	if (strcmp(ANYDEV, interface)) {
 		addr.can_ifindex = if_nametoindex(interface);
 		if (!addr.can_ifindex) {
-			perror("if_nametoindex");
+			perror("if_nametoindex()");
 			exit(EXIT_FAILURE);
 		}
 	}
