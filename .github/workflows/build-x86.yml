@@ -19,6 +19,7 @@ jobs:
       id: restore-build
       with:
         path: ./can-utils-trunk.tar.gz
+        key: ${{ github.sha }}
 
   testsetup:
     runs-on: ubuntu-latest
@@ -28,6 +29,7 @@ jobs:
       id: restore-build
       with:
         path: ./can-utils-trunk.tar.gz
+        key: ${{ github.sha }}
     - run: |
         tar -xf can-utils-trunk.tar.gz
     - name: test
