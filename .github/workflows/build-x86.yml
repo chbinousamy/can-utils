@@ -26,7 +26,7 @@ jobs:
     needs: build
     steps:
     - if: ${{ steps.restore-build.outputs.cache-hit != 'true' }}
-    - run: |
+      run: |
         tar -xf can-utils-trunk.tar.gz
     - name: test
       run: |
