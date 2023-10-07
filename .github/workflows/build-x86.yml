@@ -19,6 +19,7 @@ jobs:
       run: make distcheck
     - name: test
       run: |
+        apt-get install -y linux-modules-extra-$(uname -r)
         modprobe vcan
         lsmod | grep vcan
         ip link add dev vcan0 type vcan
