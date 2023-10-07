@@ -25,11 +25,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     steps:
-    - uses: actions/cache@v2
-      id: restore-build
-      with:
-        path: ./can-utils-trunk.tar.gz
-        key: restore-build
+    - if: ${{ steps.restore-build.outputs.cache-hit != 'true' }}
     - run: |
         tar -xf can-utils-trunk.tar.gz
     - name: test
