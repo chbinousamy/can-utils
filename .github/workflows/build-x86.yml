@@ -10,18 +10,18 @@ jobs:
     - name: autogen
       run: ./autogen.sh
     - name: configure
-      run: ./configure
+      run: ./configure --prefix=$PWD/bin
     - name: make
       run: make
     - name: make distcheck
       run: make distcheck
-    - name: install
-      run: CC=clang cmake -DCMAKE_INSTALL_PREFIX=./binaries .. && make install
+    - name: make install
+      run: make install
     - name: Archive binaries
       uses: actions/upload-artifact@v3
       with:
         name: binaries
-        path: ./binaries
+        path: ./bin
 
   test:
     needs: build
@@ -32,7 +32,7 @@ jobs:
       with:
         name: binaries
     - run: |
-        unzip binaries.zip
+        unzip bin.zip
         ls
     - name: test vcan
       run: |
