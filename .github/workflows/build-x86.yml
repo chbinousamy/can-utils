@@ -15,28 +15,8 @@ jobs:
       run: make
     - name: make distcheck
       run: make distcheck
-    - uses: actions/cache@v3
-      id: restore-build
+    - name: Archive code coverage results
+      uses: actions/upload-artifact@v3
       with:
+        name: can-utils-trunk.tar.gz
         path: ./can-utils-trunk.tar.gz
-        key: restore-build
-
-  testsetup:
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-    - if: ${{ steps.restore-build.outputs.cache-hit != 'true' }}
-      run: |
-        tar -xf can-utils-trunk.tar.gz
-    - name: test
-      run: |
-        sudo apt-get install -y linux-modules-extra-$(uname -r)
-        sudo modprobe vcan
-        lsmod | grep vcan
-        sudo ip link add dev vcan0 type vcan
-        sudo ip link set vcan0 mtu 16
-        sudo ip link set up vcan0
-        ifconfig vcan0
-        ./candump vcan0 &
-        ./cansend vcan0 5A2#11.2233.445D556677.66
-        
