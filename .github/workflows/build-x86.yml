@@ -32,7 +32,7 @@ jobs:
       with:
         name: binaries
     - run: |
-        unzip bin.zip
+        unzip binaries.zip
         ls
     - name: test vcan
       run: |
