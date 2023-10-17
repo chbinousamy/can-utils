@@ -15,11 +15,13 @@ jobs:
       run: make
     - name: make distcheck
       run: make distcheck
-    - name: Archive code coverage results
+    - name: install
+      run: CC=clang cmake -DCMAKE_INSTALL_PREFIX=./binaries .. && make install
+    - name: Archive binaries
       uses: actions/upload-artifact@v3
       with:
-        name: can-utils-trunk.tar.gz
-        path: ./can-utils-trunk.tar.gz
+        name: binaries
+        path: ./binaries
 
   test:
     needs: build
@@ -28,9 +30,9 @@ jobs:
     - name: Download can utils artifact
       uses: actions/download-artifact@v3
       with:
-        name: can-utils-trunk.tar.gz
+        name: binaries
     - run: |
-        tar -xzf can-utils-trunk.tar.gz
+        unzip binaries.zip
         ls
     - name: test vcan
       run: |
@@ -41,5 +43,5 @@ jobs:
         sudo ip link set vcan0 mtu 16
         sudo ip link set up vcan0
         ifconfig vcan0
-        ./candump vcan0 &
-        ./cansend vcan0 5A2#11.2233.445D556677.66
+        ./binaries/candump vcan0 &
+        ./binaries/cansend vcan0 5A2#11.2233.445D556677.66
