@@ -32,8 +32,8 @@ jobs:
       with:
         name: binaries
     - run: |
-        unzip binaries.zip
         ls
+        unzip bin.zip
     - name: test vcan
       run: |
         sudo apt-get install -y linux-modules-extra-$(uname -r)
