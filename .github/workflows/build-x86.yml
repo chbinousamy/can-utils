@@ -31,11 +31,9 @@ jobs:
       uses: actions/download-artifact@v3
       with:
         name: binaries
-    - run: |
-        ls
-        unzip bin.zip
     - name: test vcan
       run: |
+        ls bin
         sudo apt-get install -y linux-modules-extra-$(uname -r)
         sudo modprobe vcan
         lsmod | grep vcan
@@ -43,5 +41,5 @@ jobs:
         sudo ip link set vcan0 mtu 16
         sudo ip link set up vcan0
         ifconfig vcan0
-        ./binaries/candump vcan0 &
-        ./binaries/cansend vcan0 5A2#11.2233.445D556677.66
+        ./bin/candump vcan0 &
+        ./bin/cansend vcan0 5A2#11.2233.445D556677.66
